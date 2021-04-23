@@ -19,7 +19,7 @@ class RenameNamespace extends BaseScript {
 			return;
 		}
 
-		$rootPath = dirname( __DIR__ );
+		$rootPath = dirname( __DIR__, 4 );
 
 		$this->readPath( $rootPath );
 	}
