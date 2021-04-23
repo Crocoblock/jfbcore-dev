@@ -1,0 +1,19 @@
+{
+    "name": "hug.reed/jfbcore-dev",
+    "description": "Dev package for working with hug.reed/jfbcore",
+    "type": "library",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Oleksander Ivanenko",
+            "email": "sanko200065@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "DevCoreJFB\\": "src/"
+        }
+    }
+}
