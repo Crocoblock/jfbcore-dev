@@ -9,7 +9,6 @@
             "email": "sanko200065@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
     "require": {},
     "autoload": {
         "psr-4": {
