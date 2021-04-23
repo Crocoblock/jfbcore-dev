@@ -19,6 +19,8 @@ class RenameNamespace extends BaseScript {
 			return;
 		}
 
+		shell_exec( 'composer clear-cache' );
+
 		$rootPath = dirname( __DIR__, 4 );
 
 		$this->readPath( $rootPath );
@@ -34,7 +36,7 @@ class RenameNamespace extends BaseScript {
 
 			if ( is_dir( $currentPath ) ) {
 				$this->readPath( $currentPath );
-			} elseif ( is_file( $currentPath ) && preg_match( '/^.+\.(php|lock)$/i', $element ) ) {
+			} elseif ( is_file( $currentPath ) && $this->checkPattern( $currentPath ) ) {
 				$currentFile = file_get_contents( $currentPath );
 
 				if ( false !== strripos( $currentFile, $this->config['replace'] ) ) {
@@ -56,5 +58,18 @@ class RenameNamespace extends BaseScript {
 					: "Successfully put into file:\r\n$currentPath\r\n\n";
 			}
 		}
+	}
+
+	public function checkPattern( $currentPath ) {
+		if ( ! isset( $this->config['patterns'] ) || empty( $this->config['patterns'] ) ) {
+			return true;
+		}
+
+		foreach ( $this->config['patterns'] as $pattern ) {
+			if ( preg_match( $pattern, $currentPath ) ) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
