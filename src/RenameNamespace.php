@@ -34,8 +34,7 @@ class RenameNamespace extends BaseScript {
 
 			if ( is_dir( $currentPath ) ) {
 				$this->readPath( $currentPath );
-			}
-			elseif ( is_file( $currentPath ) && false !== strripos( $element, '.php' ) ) {
+			} elseif ( is_file( $currentPath ) && preg_match( '/^.+\.(php|lock)$/i', $element ) ) {
 				$currentFile = file_get_contents( $currentPath );
 
 				if ( false !== strripos( $currentFile, $this->config['replace'] ) ) {
